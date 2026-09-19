@@ -14,4 +14,4 @@ COPY --from=build /app/dist ./dist
 RUN mkdir -p /data/media && chown -R node:node /app /data
 USER node
 EXPOSE 3200
-CMD ["node", "dist/src/server.js"]
+CMD ["node", "dist/server.js"]
