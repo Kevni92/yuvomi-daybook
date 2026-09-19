@@ -1,0 +1,220 @@
+.daybook {
+  --daybook-accent: #d88aa2;
+  --daybook-surface: var(--color-surface, #201e1c);
+  --daybook-surface-soft: var(--color-surface-raised, #2a2724);
+  --daybook-border: var(--color-border, rgba(255,255,255,.09));
+  --daybook-text: var(--color-text, #f7f5f2);
+  --daybook-muted: var(--color-text-secondary, #aaa39d);
+  color: var(--daybook-text);
+  padding: clamp(1rem, 2.2vw, 2rem);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.daybook * { box-sizing: border-box; }
+.daybook button, .daybook input, .daybook textarea { font: inherit; }
+
+.daybook__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(.5rem, 2vw, 1.5rem) 0 1.5rem;
+}
+.daybook__header h1 { margin: .2rem 0 .35rem; font-size: clamp(2rem, 5vw, 3.7rem); letter-spacing: -.055em; line-height: .98; }
+.daybook__header p { margin: 0; color: var(--daybook-muted); font-size: 1.02rem; }
+.daybook__eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: .72rem; font-weight: 800; color: var(--daybook-accent); }
+.daybook__add,
+.daybook-button--primary,
+.daybook-empty__button {
+  border: 0;
+  border-radius: 999px;
+  color: #1b1216;
+  background: linear-gradient(135deg, #f0a5ba, #b596ff);
+  font-weight: 800;
+  padding: .8rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  box-shadow: 0 10px 32px rgba(203,130,174,.22);
+  cursor: pointer;
+}
+.daybook__add svg { width: 19px; height: 19px; }
+
+.daybook__toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 0 1rem;
+  background: color-mix(in srgb, var(--color-background, #171615) 86%, transparent);
+  backdrop-filter: blur(14px);
+}
+.daybook__filters { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: .45rem; scrollbar-width: none; padding: .15rem 0; }
+.daybook__filters::-webkit-scrollbar { display: none; }
+.daybook__count { color: var(--daybook-muted); font-size: .82rem; white-space: nowrap; }
+
+.daybook-filter {
+  --person-color: #a78bfa;
+  color: var(--daybook-muted);
+  background: transparent;
+  border: 1px solid var(--daybook-border);
+  border-radius: 999px;
+  padding: .55rem .8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.daybook-filter.is-active { color: var(--daybook-text); background: color-mix(in srgb, var(--person-color) 16%, var(--daybook-surface)); border-color: color-mix(in srgb, var(--person-color) 50%, var(--daybook-border)); }
+.daybook-filter__dot, .daybook-person__dot, .daybook-person-choice__dot { width: .62rem; height: .62rem; border-radius: 50%; background: var(--person-color); box-shadow: 0 0 0 4px color-mix(in srgb, var(--person-color) 12%, transparent); }
+
+.daybook__timeline-host { padding: .25rem 0 5rem; }
+.daybook__loading { padding: 4rem 1rem; text-align: center; color: var(--daybook-muted); }
+
+.daybook-hero {
+  --entry-accent: var(--daybook-accent);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  min-height: 420px;
+  background: linear-gradient(150deg, color-mix(in srgb, var(--entry-accent) 12%, var(--daybook-surface)), var(--daybook-surface));
+  border: 1px solid color-mix(in srgb, var(--entry-accent) 28%, var(--daybook-border));
+  border-radius: 30px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.22);
+}
+.daybook-hero::after { content: ''; position: absolute; inset: auto -10% -55% 30%; height: 280px; background: radial-gradient(circle, color-mix(in srgb, var(--entry-accent) 24%, transparent), transparent 66%); pointer-events: none; }
+.daybook-hero__media { min-height: 300px; overflow: hidden; background: #151413; }
+.daybook-hero__media img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; display: block; }
+.daybook-hero__content { padding: clamp(1.4rem, 4vw, 3rem); align-self: center; position: relative; z-index: 1; }
+.daybook-hero__label { display: inline-flex; align-items: center; gap: .45rem; color: var(--entry-accent); font-size: .78rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+.daybook-hero__label svg { width: 16px; height: 16px; }
+
+.daybook-entry__top { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.daybook-entry__date { font-size: .82rem; color: var(--daybook-muted); text-transform: capitalize; }
+.daybook-entry__people { display: flex; gap: .35rem; flex-wrap: wrap; }
+.daybook-person { --person-color: #a78bfa; display: inline-flex; align-items: center; gap: .4rem; font-size: .76rem; color: var(--daybook-muted); }
+.daybook-person--hero { padding: .36rem .55rem; border-radius: 999px; background: color-mix(in srgb, var(--person-color) 12%, transparent); color: var(--daybook-text); }
+.daybook-entry__title { margin: .8rem 0 .55rem; font-size: clamp(1.35rem, 3vw, 2.15rem); line-height: 1.08; letter-spacing: -.025em; }
+.daybook-card .daybook-entry__title { font-size: 1.35rem; }
+.daybook-entry__body { margin: 0 0 1rem; color: color-mix(in srgb, var(--daybook-text) 88%, var(--daybook-muted)); line-height: 1.62; white-space: pre-wrap; }
+
+.daybook-gallery { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .45rem; margin: 1rem 0; }
+.daybook-gallery__frame { position: relative; padding: 0; border: 0; border-radius: 14px; overflow: hidden; min-height: 130px; background: #161514; cursor: zoom-in; }
+.daybook-gallery__frame img { width: 100%; height: 100%; min-height: 130px; object-fit: cover; display: block; transition: transform .25s ease; }
+.daybook-gallery__frame:hover img { transform: scale(1.03); }
+.daybook-gallery--hero .daybook-gallery__frame:first-child:nth-last-child(1) { grid-column: 1 / -1; }
+.daybook-gallery__more { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15,14,13,.58); color: white; font-weight: 900; font-size: 1.4rem; }
+
+.daybook-audio { display: flex; gap: .8rem; align-items: flex-start; padding: .8rem; margin: .8rem 0; background: color-mix(in srgb, var(--entry-accent, var(--daybook-accent)) 8%, var(--daybook-surface-soft)); border: 1px solid var(--daybook-border); border-radius: 16px; }
+.daybook-audio__icon { width: 38px; height: 38px; flex: 0 0 38px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--entry-accent, var(--daybook-accent)) 18%, transparent); color: var(--entry-accent, var(--daybook-accent)); }
+.daybook-audio__icon svg { width: 18px; }
+.daybook-audio__body { min-width: 0; flex: 1; }
+.daybook-audio audio { width: 100%; height: 34px; }
+.daybook-audio p { margin: .5rem 0 0; color: var(--daybook-muted); font-size: .86rem; line-height: 1.45; }
+
+.daybook-location { margin-top: 1rem; overflow: hidden; border: 1px solid var(--daybook-border); border-radius: 16px; background: var(--daybook-surface-soft); }
+.daybook-location__header { display: flex; gap: .5rem; align-items: center; padding: .65rem .75rem; color: var(--daybook-muted); font-size: .82rem; }
+.daybook-location__header svg { width: 16px; color: var(--entry-accent, var(--daybook-accent)); }
+.daybook-location iframe { width: 100%; height: 180px; border: 0; display: block; filter: saturate(.8) contrast(.95); }
+
+.daybook-timeline { position: relative; display: grid; gap: 1rem; margin-top: 2.2rem; padding: .4rem 0; }
+.daybook-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-1px); background: linear-gradient(to bottom, color-mix(in srgb, var(--daybook-accent) 70%, transparent), var(--daybook-border) 9%, var(--daybook-border) 91%, transparent); }
+.daybook-timeline__item { --entry-accent: var(--daybook-accent); position: relative; width: calc(50% - 34px); }
+.daybook-timeline__item.is-left { justify-self: start; }
+.daybook-timeline__item.is-right { justify-self: end; }
+.daybook-timeline__node { position: absolute; top: 2rem; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--color-background, #171615); border: 2px solid color-mix(in srgb, var(--entry-accent) 78%, white); box-shadow: 0 0 0 7px color-mix(in srgb, var(--entry-accent) 8%, transparent); }
+.daybook-timeline__node span { width: 7px; height: 7px; background: var(--entry-accent); border-radius: 50%; }
+.daybook-timeline__item.is-left .daybook-timeline__node { right: -45px; }
+.daybook-timeline__item.is-right .daybook-timeline__node { left: -45px; }
+.daybook-card { background: linear-gradient(155deg, color-mix(in srgb, var(--entry-accent) 7%, var(--daybook-surface)), var(--daybook-surface)); border: 1px solid color-mix(in srgb, var(--entry-accent) 22%, var(--daybook-border)); border-radius: 22px; padding: 1.1rem; box-shadow: 0 14px 35px rgba(0,0,0,.13); }
+
+.daybook-empty { text-align: center; max-width: 520px; margin: 4rem auto; padding: 2rem; }
+.daybook-empty__icon { width: 72px; height: 72px; margin: 0 auto 1rem; display: grid; place-items: center; border-radius: 24px; background: color-mix(in srgb, var(--daybook-accent) 15%, var(--daybook-surface)); color: var(--daybook-accent); }
+.daybook-empty h2 { margin: .4rem 0; }
+.daybook-empty p { color: var(--daybook-muted); margin: 0 0 1.3rem; }
+
+.daybook-composer-backdrop { position: fixed; inset: 0; z-index: 1000; background: rgba(9,8,8,.72); backdrop-filter: blur(14px); display: grid; place-items: center; padding: 1rem; }
+.daybook-composer { width: min(760px, 100%); max-height: min(92dvh, 940px); display: flex; flex-direction: column; overflow: hidden; border-radius: 28px; background: var(--daybook-surface, #211f1d); border: 1px solid var(--daybook-border); box-shadow: 0 36px 100px rgba(0,0,0,.48); }
+.daybook-composer__header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 1.3rem 1rem; border-bottom: 1px solid var(--daybook-border); }
+.daybook-composer__header h2 { margin: .2rem 0 0; font-size: 1.55rem; }
+.daybook-composer__body { overflow-y: auto; padding: 1.1rem 1.3rem 1.3rem; display: grid; gap: 1rem; }
+.daybook-composer__footer { display: flex; justify-content: flex-end; gap: .65rem; padding: 1rem 1.3rem; border-top: 1px solid var(--daybook-border); background: color-mix(in srgb, var(--daybook-surface) 94%, black); }
+.daybook-icon-button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--daybook-border); background: transparent; color: var(--daybook-text); display: grid; place-items: center; cursor: pointer; }
+.daybook-field { display: grid; gap: .45rem; color: var(--daybook-muted); font-size: .8rem; font-weight: 750; }
+.daybook-field input, .daybook-field textarea { width: 100%; border: 1px solid var(--daybook-border); border-radius: 15px; background: color-mix(in srgb, var(--daybook-surface-soft) 78%, transparent); color: var(--daybook-text); padding: .8rem .9rem; outline: none; resize: vertical; }
+.daybook-field input:focus, .daybook-field textarea:focus { border-color: color-mix(in srgb, var(--daybook-accent) 65%, white); box-shadow: 0 0 0 3px color-mix(in srgb, var(--daybook-accent) 13%, transparent); }
+.daybook-person-picker { display: flex; flex-wrap: wrap; gap: .45rem; }
+.daybook-person-choice { --person-color: #a78bfa; display: inline-flex; align-items: center; gap: .45rem; color: var(--daybook-muted); background: transparent; border: 1px solid var(--daybook-border); border-radius: 999px; padding: .5rem .65rem; cursor: pointer; }
+.daybook-person-choice svg { width: 14px; opacity: 0; }
+.daybook-person-choice.is-selected { background: color-mix(in srgb, var(--person-color) 14%, var(--daybook-surface)); border-color: color-mix(in srgb, var(--person-color) 55%, var(--daybook-border)); color: var(--daybook-text); }
+.daybook-person-choice.is-selected svg { opacity: 1; color: var(--person-color); }
+
+.daybook-composer__capture-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .75rem; }
+.daybook-capture { position: relative; min-height: 110px; border: 1px dashed color-mix(in srgb, var(--daybook-accent) 36%, var(--daybook-border)); border-radius: 18px; background: color-mix(in srgb, var(--daybook-accent) 5%, transparent); color: var(--daybook-text); display: grid; justify-items: start; align-content: center; gap: .18rem; padding: 1rem; cursor: pointer; text-align: left; }
+.daybook-capture svg { color: var(--daybook-accent); width: 22px; height: 22px; margin-bottom: .25rem; }
+.daybook-capture span { font-weight: 800; }
+.daybook-capture small { color: var(--daybook-muted); }
+.daybook-capture--file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.daybook-capture.is-recording { border-style: solid; border-color: #fb7185; background: rgba(251,113,133,.09); animation: daybookPulse 1.2s ease-in-out infinite; }
+@keyframes daybookPulse { 50% { box-shadow: 0 0 0 6px rgba(251,113,133,.08); } }
+
+.daybook-draft-media { display: flex; gap: .55rem; overflow-x: auto; padding: .15rem 0; }
+.daybook-draft-media__item { position: relative; flex: 0 0 118px; height: 92px; border: 1px solid var(--daybook-border); border-radius: 14px; overflow: hidden; background: var(--daybook-surface-soft); }
+.daybook-draft-media__item img { width: 100%; height: 100%; object-fit: cover; }
+.daybook-draft-media__item.is-audio { display: grid; place-items: center; gap: .2rem; color: var(--daybook-muted); font-size: .72rem; }
+.daybook-draft-media__item.is-audio svg { color: var(--daybook-accent); }
+.daybook-draft-media__remove { position: absolute; top: 5px; right: 5px; width: 26px; height: 26px; border: 0; border-radius: 50%; display: grid; place-items: center; background: rgba(15,14,13,.78); color: white; cursor: pointer; }
+.daybook-draft-media__remove svg { width: 13px; }
+
+.daybook-transcription { padding: .7rem .8rem; border-radius: 13px; font-size: .82rem; background: var(--daybook-surface-soft); color: var(--daybook-muted); }
+.daybook-transcription.is-recording { color: #fb7185; }
+.daybook-transcription.is-done { color: #34d399; }
+.daybook-transcription.is-error { color: #fb7185; }
+.daybook-location-editor { overflow: hidden; border: 1px solid var(--daybook-border); border-radius: 16px; }
+.daybook-location-editor > div { display: grid; grid-template-columns: auto 1fr; gap: .2rem .5rem; align-items: center; padding: .7rem .8rem; }
+.daybook-location-editor > div svg { grid-row: 1 / span 2; width: 18px; color: var(--daybook-accent); }
+.daybook-location-editor > div span { color: var(--daybook-muted); font-size: .8rem; }
+.daybook-location-editor iframe { border: 0; width: 100%; height: 180px; display: block; }
+.daybook-composer__feedback { min-height: 1.1rem; color: var(--daybook-muted); font-size: .8rem; }
+.daybook-composer__feedback.is-error { color: #fb7185; }
+.daybook-button { border: 1px solid var(--daybook-border); border-radius: 999px; padding: .7rem .9rem; cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; }
+.daybook-button--ghost { background: transparent; color: var(--daybook-text); }
+.daybook-button--primary:disabled { opacity: .55; cursor: wait; }
+.daybook-button svg { width: 16px; }
+
+@media (max-width: 760px) {
+  .daybook { padding: .8rem .9rem 5rem; }
+  .daybook__header { align-items: flex-start; }
+  .daybook__header p { max-width: 25rem; }
+  .daybook__add { width: 48px; height: 48px; padding: 0; flex: 0 0 48px; }
+  .daybook__add span { display: none; }
+  .daybook__toolbar { padding-top: .45rem; }
+  .daybook__count { display: none; }
+  .daybook-hero { display: flex; flex-direction: column; border-radius: 24px; min-height: 0; }
+  .daybook-hero__media { min-height: 250px; max-height: 340px; }
+  .daybook-hero__media img { min-height: 250px; max-height: 340px; }
+  .daybook-hero__content { padding: 1.15rem; }
+  .daybook-timeline { margin-top: 1.4rem; padding-left: 24px; gap: .85rem; }
+  .daybook-timeline::before { left: 9px; transform: none; }
+  .daybook-timeline__item { width: 100%; justify-self: stretch !important; }
+  .daybook-timeline__item.is-left .daybook-timeline__node,
+  .daybook-timeline__item.is-right .daybook-timeline__node { left: -25px; right: auto; top: 1.7rem; width: 18px; height: 18px; }
+  .daybook-card { border-radius: 19px; padding: .95rem; }
+  .daybook-gallery__frame { min-height: 105px; }
+  .daybook-gallery__frame img { min-height: 105px; }
+  .daybook-composer-backdrop { padding: 0; align-items: end; }
+  .daybook-composer { width: 100%; max-height: 96dvh; border-radius: 26px 26px 0 0; border-bottom: 0; }
+  .daybook-composer__capture-grid { grid-template-columns: 1fr; }
+  .daybook-composer__footer { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .daybook *, .daybook *::before, .daybook *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}

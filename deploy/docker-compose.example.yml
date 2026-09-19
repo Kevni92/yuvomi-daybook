@@ -1,0 +1,28 @@
+services:
+  daybook:
+    build:
+      context: ../service
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3200
+      YUVOMI_INTERNAL_URL: http://yuvomi:3000
+      DAYBOOK_DB_PATH: /data/daybook.db
+      DAYBOOK_MEDIA_DIR: /data/media
+      DAYBOOK_TRANSCRIPTION_MODEL: gpt-4o-mini-transcribe
+      # Banking-OpenAI-Einstellung wiederverwenden:
+      BANKING_DB_PATH: /banking/banking.db
+      BANKING_DATA_ENCRYPTION_KEY_FILE: /run/secrets/banking_data_encryption_key
+    volumes:
+      - daybook-data:/data
+      # Pfad an die bestehende Banking-Installation anpassen.
+      - /opt/yuvomi-banking/data/banking.db:/banking/banking.db:ro
+    secrets:
+      - banking_data_encryption_key
+
+volumes:
+  daybook-data:
+
+secrets:
+  banking_data_encryption_key:
+    file: /opt/yuvomi/secrets/banking-data-encryption-key

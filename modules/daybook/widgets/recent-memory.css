@@ -1,0 +1,19 @@
+.daybook-widget {
+  height: 100%;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  color: var(--color-text, #f7f5f2);
+  text-decoration: none;
+}
+.daybook-widget__header { display: flex; align-items: center; justify-content: space-between; color: var(--color-text-secondary, #aaa39d); }
+.daybook-widget__header > span { display: inline-flex; align-items: center; gap: .45rem; font-weight: 800; color: var(--color-text, #f7f5f2); }
+.daybook-widget__header svg { width: 18px; height: 18px; color: #d88aa2; }
+.daybook-widget__body { flex: 1; min-height: 0; display: grid; grid-template-columns: 92px 1fr; gap: .8rem; align-items: center; }
+.daybook-widget__image { width: 92px; height: 92px; object-fit: cover; border-radius: 18px; border: 1px solid var(--color-border, rgba(255,255,255,.08)); }
+.daybook-widget__copy { min-width: 0; display: grid; gap: .25rem; }
+.daybook-widget__copy strong { font-size: 1.08rem; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.daybook-widget__copy span, .daybook-widget__muted, .daybook-widget__empty span { color: var(--color-text-secondary, #aaa39d); font-size: .82rem; }
+.daybook-widget__empty { grid-column: 1 / -1; display: grid; gap: .25rem; align-self: center; padding: .8rem; border: 1px dashed var(--color-border, rgba(255,255,255,.1)); border-radius: 16px; background: color-mix(in srgb, #d88aa2 6%, transparent); }
+@media (max-width: 540px) { .daybook-widget__body { grid-template-columns: 74px 1fr; } .daybook-widget__image { width: 74px; height: 74px; border-radius: 15px; } }

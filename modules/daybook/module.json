@@ -1,0 +1,49 @@
+{
+  "manifestVersion": 1,
+  "id": "daybook",
+  "name": "Familientagebuch",
+  "version": "0.1.0",
+  "description": "Private Familienchronik mit Text, Fotos, Audio und Orten.",
+  "entry": "index.js",
+  "style": "style.css",
+  "icon": "book-heart",
+  "accent": "#D88AA2",
+  "menu": {
+    "show": true,
+    "label": "Familientagebuch",
+    "labelKey": "menu",
+    "icon": "book-heart",
+    "order": 68
+  },
+  "page": {
+    "composition": "data",
+    "width": "wide",
+    "navigation": "standard",
+    "responsive": "standard"
+  },
+  "i18n": { "defaultLocale": "de" },
+  "capabilities": {
+    "permissions": {
+      "module": {
+        "label": "Familientagebuch",
+        "labelKey": "module",
+        "icon": "book-heart"
+      },
+      "widgets": [
+        { "id": "recent-memory", "label": "Letzte Erinnerung" }
+      ]
+    },
+    "widgets": [
+      {
+        "id": "recent-memory",
+        "entry": "widgets/recent-memory.js",
+        "label": "Letzte Erinnerung",
+        "labelKey": "widgets.recent-memory",
+        "icon": "images",
+        "defaultSize": "1x2",
+        "defaultVisible": true
+      }
+    ],
+    "api": { "prefix": "/api/extensions/daybook" }
+  }
+}
