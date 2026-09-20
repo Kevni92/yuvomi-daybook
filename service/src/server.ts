@@ -1,4 +1,4 @@
-import { createApp } from './app.js';
+import { createApp } from './app-v2.js';
 import { config } from './config.js';
 
 const app = createApp();
