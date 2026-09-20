@@ -107,10 +107,15 @@ function addTimelineGaps(root) {
   const rail = root.querySelector('.daybook-timeline--groups');
   const hero = root.querySelector('.daybook-entry-summary--hero');
   if (!rail || !hero) return;
-  rail.querySelectorAll('.daybook-gap').forEach((item) => item.remove());
 
   const groups = [...rail.querySelectorAll(':scope > .daybook-day-group')];
-  let newerDate = hero.querySelector('time')?.dateTime || '';
+  const heroDate = hero.querySelector('time')?.dateTime || '';
+  const signature = [heroDate, ...groups.map((group) => group.querySelector('time')?.dateTime || '')].join('|');
+  if (rail.dataset.daybookGapSignature === signature) return;
+  rail.dataset.daybookGapSignature = signature;
+  rail.querySelectorAll('.daybook-gap').forEach((item) => item.remove());
+
+  let newerDate = heroDate;
   for (const group of groups) {
     const olderDate = group.querySelector('time')?.dateTime || '';
     const days = missingDaysBetween(newerDate, olderDate);
