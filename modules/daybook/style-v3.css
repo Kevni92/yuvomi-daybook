@@ -1,0 +1,244 @@
+@import url('./style-v2.css');
+
+/* v0.3 – chronology gaps, compact photo previews, OpenStreetMap and reminder settings. */
+.daybook__header-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .55rem;
+  flex: 0 0 auto;
+}
+
+.daybook__settings-button,
+.daybook-settings__back {
+  min-height: 44px;
+  border: 1px solid var(--daybook-border);
+  border-radius: 999px;
+  padding: .68rem .85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  color: var(--daybook-text);
+  background: color-mix(in srgb, var(--daybook-surface) 80%, transparent);
+  text-decoration: none;
+  font-weight: 750;
+}
+.daybook__settings-button svg,
+.daybook-settings__back svg { width: 17px; height: 17px; color: var(--daybook-accent); }
+
+/* Timeline cards always show one attached image as a compact preview. */
+.daybook-day-group .daybook-entry-summary.has-daybook-thumb {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: .9rem;
+  align-items: stretch;
+}
+.daybook-entry-summary__thumb {
+  width: 92px;
+  height: 100%;
+  min-height: 112px;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #151413;
+  align-self: stretch;
+}
+.daybook-entry-summary__copy { min-width: 0; align-self: center; }
+.daybook-entry-summary__copy .daybook-entry__title { margin-top: .55rem; }
+
+/* Empty stretches in the family chronology. */
+.daybook-gap {
+  position: relative;
+  z-index: 2;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  width: min(390px, 56%);
+  justify-self: center;
+  color: var(--daybook-muted);
+}
+.daybook-gap__line {
+  position: absolute;
+  left: 50%;
+  top: -1.25rem;
+  bottom: -1.25rem;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--daybook-border);
+  z-index: -1;
+}
+.daybook-gap__content {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  padding: .42rem .65rem;
+  border: 1px solid var(--daybook-border);
+  border-radius: 999px;
+  background: var(--color-background, #171615);
+  font-size: .76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.daybook-gap__content svg { width: 15px; height: 15px; color: var(--daybook-accent); }
+.daybook-gap__add {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--daybook-accent) 52%, var(--daybook-border));
+  border-radius: 50%;
+  color: var(--daybook-text);
+  background: color-mix(in srgb, var(--daybook-accent) 13%, var(--color-background, #171615));
+  cursor: pointer;
+}
+.daybook-gap__add svg { width: 17px; height: 17px; }
+
+/* OpenStreetMap replaces the previous Google iframe. */
+.daybook-location iframe,
+.daybook-location-editor iframe { filter: none; }
+.daybook-location__osm-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .42rem;
+  padding: .6rem .75rem;
+  border-top: 1px solid var(--daybook-border);
+  color: var(--entry-accent, var(--daybook-accent));
+  text-decoration: none;
+  font-size: .77rem;
+  font-weight: 750;
+}
+.daybook-location__osm-link svg { width: 14px; height: 14px; }
+
+/* Reminder/settings screen. */
+.daybook-settings { max-width: 860px; }
+.daybook-settings__header { align-items: flex-start; }
+.daybook-settings__panel {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 1.15rem;
+  border: 1px solid var(--daybook-border);
+  border-radius: 24px;
+  background: linear-gradient(155deg, color-mix(in srgb, var(--daybook-accent) 4%, var(--daybook-surface)), var(--daybook-surface));
+  box-shadow: 0 14px 40px rgba(0,0,0,.12);
+}
+.daybook-settings__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.daybook-settings__panel-head h2 { margin: 0 0 .25rem; font-size: 1.15rem; }
+.daybook-settings__panel-head p { margin: 0; color: var(--daybook-muted); font-size: .84rem; line-height: 1.45; }
+.daybook-settings__status,
+.daybook-settings__devices {
+  padding: .75rem .85rem;
+  border: 1px solid var(--daybook-border);
+  border-radius: 15px;
+  background: var(--daybook-surface-soft);
+  color: var(--daybook-muted);
+  font-size: .8rem;
+}
+.daybook-settings__status.is-error,
+.daybook-settings__devices[data-error='true'] { color: #fb7185; }
+.daybook-settings__device-list { display: grid; gap: .45rem; margin-top: .55rem; }
+.daybook-settings__device { display: flex; align-items: center; gap: .5rem; color: var(--daybook-text); }
+.daybook-settings__device svg { width: 17px; height: 17px; color: var(--daybook-accent); }
+.daybook-settings__form { display: grid; gap: 1rem; }
+.daybook-settings__toggle {
+  display: flex;
+  gap: .7rem;
+  align-items: flex-start;
+  padding: .8rem;
+  border: 1px solid var(--daybook-border);
+  border-radius: 16px;
+  background: var(--daybook-surface-soft);
+  cursor: pointer;
+}
+.daybook-settings__toggle input { margin-top: .22rem; accent-color: var(--daybook-accent); }
+.daybook-settings__toggle span { display: grid; gap: .18rem; }
+.daybook-settings__toggle small { color: var(--daybook-muted); font-weight: 500; line-height: 1.4; }
+.daybook-settings__hint {
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
+  margin: 0;
+  color: var(--daybook-muted);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+.daybook-settings__hint svg { width: 16px; height: 16px; flex: 0 0 16px; color: var(--daybook-accent); margin-top: .08rem; }
+.daybook-settings__actions { display: flex; justify-content: flex-end; }
+
+/* The mobile chronology has one canonical x coordinate for both line and node. */
+@media (max-width: 760px) {
+  .daybook__header-actions { gap: .4rem; }
+  .daybook__settings-button,
+  .daybook__add { width: 46px; height: 46px; min-height: 46px; flex: 0 0 46px; padding: 0; }
+  .daybook__settings-button span { display: none; }
+
+  .daybook-timeline--groups {
+    --daybook-timeline-axis-x: 10px;
+    --daybook-timeline-content-offset: 30px;
+    padding-left: var(--daybook-timeline-content-offset);
+    overflow: visible;
+  }
+  .daybook-timeline--groups::before {
+    left: var(--daybook-timeline-axis-x);
+    top: 0;
+    bottom: 0;
+    transform: none;
+  }
+  .daybook-timeline--groups > .daybook-day-group {
+    width: 100%;
+  }
+  .daybook-timeline--groups .daybook-day-group.is-left .daybook-timeline__node,
+  .daybook-timeline--groups .daybook-day-group.is-right .daybook-timeline__node {
+    left: calc(var(--daybook-timeline-axis-x) - var(--daybook-timeline-content-offset));
+    right: auto;
+    transform: translateX(-50%);
+    top: 1.7rem;
+  }
+
+  .daybook-gap {
+    width: 100%;
+    justify-self: stretch;
+    justify-content: flex-start;
+    min-height: 50px;
+  }
+  .daybook-gap__line {
+    left: calc(var(--daybook-timeline-axis-x) - var(--daybook-timeline-content-offset));
+    transform: translateX(-50%);
+  }
+  .daybook-gap__content { margin-left: 0; font-size: .72rem; }
+
+  .daybook-day-group .daybook-entry-summary.has-daybook-thumb {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: .7rem;
+  }
+  .daybook-entry-summary__thumb {
+    width: 76px;
+    min-height: 96px;
+    max-height: 126px;
+    border-radius: 12px;
+  }
+
+  .daybook-settings__header { align-items: flex-start; }
+  .daybook-settings__back { width: 46px; height: 46px; min-height: 46px; flex: 0 0 46px; padding: 0; }
+  .daybook-settings__back span { display: none; }
+  .daybook-settings__panel { border-radius: 20px; padding: 1rem; }
+  .daybook-settings__panel-head { display: grid; }
+  .daybook-settings__panel-head [data-enable-device] { width: 100%; }
+  .daybook-settings__actions .daybook-button { width: 100%; }
+}
+
+@media (max-width: 390px) {
+  .daybook-day-group .daybook-entry-summary.has-daybook-thumb { grid-template-columns: 68px minmax(0, 1fr); }
+  .daybook-entry-summary__thumb { width: 68px; min-height: 88px; }
+  .daybook-gap__content { max-width: calc(100% - 46px); white-space: normal; }
+}
