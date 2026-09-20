@@ -29,4 +29,6 @@ jobs:
           node-version: 22
       - run: node --check modules/daybook/index.js
       - run: node --check modules/daybook/entry-v2.js
+      - run: node --check modules/daybook/entry-v3.js
+      - run: node --check modules/daybook/notification-settings.js
       - run: node --check modules/daybook/widgets/recent-memory.js
