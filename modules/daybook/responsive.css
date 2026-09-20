@@ -1,0 +1,186 @@
+@import url('./style.css');
+
+/*
+ * Mobile containment layer.
+ *
+ * The person filter is a horizontally scrolling flex row. Without an explicit
+ * min-width: 0 on that flex item it can grow the whole Yuvomi page to its
+ * intrinsic content width. On phones that made headings, the empty state and
+ * buttons appear oversized/cropped because the document itself became wider
+ * than the viewport.
+ */
+@media (max-width: 760px) {
+  .daybook {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+    padding: .75rem .9rem 5rem;
+  }
+
+  .daybook__header {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: .75rem;
+    padding: .4rem 0 1.15rem;
+  }
+
+  .daybook__header > div {
+    min-width: 0;
+  }
+
+  .daybook__header h1 {
+    max-width: 100%;
+    margin-top: .25rem;
+    font-size: clamp(2rem, 9vw, 2.45rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
+
+  .daybook__header p {
+    max-width: 100%;
+    font-size: .95rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .daybook__eyebrow {
+    font-size: .68rem;
+  }
+
+  .daybook__toolbar {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    gap: 0;
+    padding: .55rem 0 .85rem;
+  }
+
+  .daybook__filters {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: .12rem .05rem .2rem;
+  }
+
+  .daybook-filter {
+    flex: 0 0 auto;
+    padding: .5rem .7rem;
+    font-size: .9rem;
+    gap: .4rem;
+  }
+
+  .daybook-filter__dot,
+  .daybook-person__dot,
+  .daybook-person-choice__dot {
+    width: .56rem;
+    height: .56rem;
+  }
+
+  .daybook__timeline-host,
+  .daybook-hero,
+  .daybook-timeline,
+  .daybook-timeline__item,
+  .daybook-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .daybook__timeline-host {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .daybook-empty {
+    width: 100%;
+    max-width: 100%;
+    margin: 3rem auto;
+    padding: 1.2rem .45rem;
+  }
+
+  .daybook-empty__icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: .9rem;
+    border-radius: 20px;
+  }
+
+  .daybook-empty__icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .daybook-empty h2 {
+    margin: .35rem auto .55rem;
+    max-width: 100%;
+    font-size: 1.55rem;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+
+  .daybook-empty p {
+    width: min(100%, 21rem);
+    margin: 0 auto 1.15rem;
+    font-size: .95rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .daybook-empty__button {
+    max-width: 100%;
+    padding: .72rem .95rem;
+    font-size: .95rem;
+    line-height: 1.2;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .daybook-composer,
+  .daybook-composer__body,
+  .daybook-composer__footer,
+  .daybook-field,
+  .daybook-person-picker,
+  .daybook-composer__capture-grid {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .daybook-composer__header,
+  .daybook-composer__body,
+  .daybook-composer__footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .daybook-composer__footer {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .daybook {
+    padding-inline: .75rem;
+  }
+
+  .daybook__header h1 {
+    font-size: 1.9rem;
+  }
+
+  .daybook__header p {
+    font-size: .9rem;
+  }
+
+  .daybook-filter {
+    font-size: .86rem;
+    padding: .46rem .62rem;
+  }
+}
