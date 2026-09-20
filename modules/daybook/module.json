@@ -2,10 +2,10 @@
   "manifestVersion": 1,
   "id": "daybook",
   "name": "Familientagebuch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Private Familienchronik mit Text, Fotos, Audio und Orten.",
   "entry": "index.js",
-  "style": "style.css",
+  "style": "responsive.css",
   "icon": "book-heart",
   "accent": "#D88AA2",
   "menu": {
