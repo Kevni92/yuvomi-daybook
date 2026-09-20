@@ -1,0 +1,190 @@
+@import url('./responsive.css');
+
+/* v0.2 – summaries in the chronology, full details only on demand. */
+.daybook-entry-summary {
+  cursor: pointer;
+  outline: none;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.daybook-entry-summary:hover,
+.daybook-entry-summary:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--entry-accent, var(--daybook-accent)) 52%, var(--daybook-border));
+  box-shadow: 0 18px 42px rgba(0,0,0,.18);
+}
+.daybook-entry-summary:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--entry-accent, var(--daybook-accent)) 30%, transparent), 0 18px 42px rgba(0,0,0,.18);
+}
+.daybook-entry-summary__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .8rem;
+  margin-top: .9rem;
+  color: var(--daybook-muted);
+  font-size: .78rem;
+}
+.daybook-entry-summary__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+.daybook-entry-summary__meta svg { width: 15px; height: 15px; }
+.daybook-entry-summary__meta span:last-child { margin-left: auto; color: var(--entry-accent, var(--daybook-accent)); font-weight: 750; }
+
+.daybook-timeline--groups { gap: 1.25rem; }
+.daybook-day-group__panel {
+  border: 1px solid color-mix(in srgb, var(--entry-accent) 20%, var(--daybook-border));
+  border-radius: 23px;
+  padding: .8rem;
+  background: color-mix(in srgb, var(--entry-accent) 4%, var(--daybook-surface));
+  box-shadow: 0 14px 35px rgba(0,0,0,.1);
+}
+.daybook-day-group__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .8rem;
+  padding: .2rem .25rem .7rem;
+  color: var(--daybook-muted);
+}
+.daybook-day-group__header strong { color: var(--daybook-text); font-size: .92rem; text-transform: capitalize; }
+.daybook-day-group__header span { font-size: .72rem; white-space: nowrap; }
+.daybook-day-group__list { display: grid; gap: .65rem; }
+.daybook-day-group .daybook-card { box-shadow: none; background: color-mix(in srgb, var(--entry-accent) 5%, var(--daybook-surface-soft)); }
+
+/* Full entry detail */
+.daybook-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(9,8,8,.76);
+  backdrop-filter: blur(14px);
+}
+.daybook-detail {
+  width: min(780px, 100%);
+  max-height: min(92dvh, 960px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--daybook-border);
+  border-radius: 28px;
+  background: var(--daybook-surface, #211f1d);
+  box-shadow: 0 36px 100px rgba(0,0,0,.52);
+}
+.daybook-detail__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem 1rem;
+  border-bottom: 1px solid var(--daybook-border);
+}
+.daybook-detail__header h2 { margin: .25rem 0 0; font-size: clamp(1.55rem, 4vw, 2.35rem); line-height: 1.08; }
+.daybook-detail__body { overflow-y: auto; padding: 1.15rem 1.35rem 1.35rem; }
+.daybook-detail__people { margin-bottom: 1rem; }
+.daybook-detail__text { margin: 0 0 1.1rem; white-space: pre-wrap; line-height: 1.65; color: color-mix(in srgb, var(--daybook-text) 90%, var(--daybook-muted)); }
+.daybook-detail__footer { display: flex; justify-content: flex-end; padding: 1rem 1.35rem; border-top: 1px solid var(--daybook-border); }
+.daybook-gallery--detail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.daybook-gallery--detail .daybook-gallery__frame { aspect-ratio: 1 / 1; min-height: 0; }
+.daybook-gallery--detail .daybook-gallery__frame img { min-height: 0; height: 100%; }
+.daybook-no-location {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: .9rem 1rem;
+  border: 1px dashed var(--daybook-border);
+  border-radius: 16px;
+  color: var(--daybook-muted);
+  background: color-mix(in srgb, var(--daybook-surface-soft) 72%, transparent);
+}
+.daybook-no-location > svg { width: 22px; height: 22px; flex: 0 0 22px; color: var(--daybook-accent); }
+.daybook-no-location div { display: grid; gap: .16rem; }
+.daybook-no-location strong { color: var(--daybook-text); font-size: .88rem; }
+.daybook-no-location span { font-size: .78rem; line-height: 1.4; }
+
+/* Composer media preview: selected images are visible before saving. */
+.daybook-field-hint {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  margin: -.4rem 0 0;
+  color: var(--daybook-muted);
+  font-size: .75rem;
+  line-height: 1.4;
+}
+.daybook-field-hint svg { width: 15px; height: 15px; flex: 0 0 15px; color: var(--daybook-accent); }
+.daybook-media-editor {
+  display: grid;
+  gap: .65rem;
+  padding: .75rem;
+  border: 1px solid var(--daybook-border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--daybook-surface-soft) 58%, transparent);
+}
+.daybook-media-editor[hidden] { display: none; }
+.daybook-media-editor__heading { display: flex; align-items: center; justify-content: space-between; gap: .8rem; }
+.daybook-media-editor__heading strong { font-size: .84rem; }
+.daybook-media-editor__heading span { color: var(--daybook-muted); font-size: .74rem; }
+.daybook-draft-media--preview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .55rem;
+  overflow: visible;
+}
+.daybook-draft-media--preview .daybook-draft-media__item {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  flex: none;
+}
+.daybook-draft-media--preview .daybook-draft-media__item.is-audio {
+  aspect-ratio: auto;
+  min-height: 92px;
+}
+.daybook-draft-media__badge {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  padding: .18rem .38rem;
+  border-radius: 999px;
+  background: rgba(15,14,13,.76);
+  color: white;
+  font-size: .62rem;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+.daybook-location-editor > [data-location-missing] { color: var(--daybook-muted); }
+.daybook-location-editor > [data-location-missing] strong { color: var(--daybook-text); }
+.daybook-location-editor > [hidden] { display: none; }
+.daybook-location-editor iframe[hidden] { display: none; }
+
+@media (max-width: 760px) {
+  .daybook-entry-summary:hover { transform: none; }
+  .daybook-entry-summary--hero { border-radius: 22px; }
+  .daybook-entry-summary--hero .daybook-hero__media { min-height: 190px; max-height: 240px; }
+  .daybook-entry-summary--hero .daybook-hero__media img { min-height: 190px; max-height: 240px; }
+  .daybook-timeline--groups { padding-left: 22px; }
+  .daybook-day-group__panel { border-radius: 19px; padding: .65rem; }
+  .daybook-day-group__header { display: grid; gap: .12rem; padding: .1rem .15rem .6rem; }
+  .daybook-day-group__header span { white-space: normal; }
+  .daybook-entry-summary__meta span:last-child { margin-left: 0; }
+
+  .daybook-detail-backdrop { padding: 0; align-items: end; }
+  .daybook-detail { width: 100%; max-height: 94dvh; border-radius: 26px 26px 0 0; border-bottom: 0; }
+  .daybook-detail__header { padding: 1rem 1rem .85rem; }
+  .daybook-detail__body { padding: 1rem; }
+  .daybook-detail__footer { padding: .85rem 1rem max(.85rem, env(safe-area-inset-bottom)); }
+  .daybook-gallery--detail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .daybook-draft-media--preview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 420px) {
+  .daybook-draft-media--preview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .daybook-detail__header h2 { font-size: 1.55rem; }
+}
